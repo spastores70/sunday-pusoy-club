@@ -1,1 +1,29 @@
-{"$schema":"https://openapi.vercel.sh/vercel.json","framework":null,"installCommand":"","buildCommand":"node scripts/build-vercel.mjs","outputDirectory":"public","functions":{"api/[...path].js":{"maxDuration":20}},"headers":[{"source":"/api/:path*","headers":[{"key":"Cache-Control","value":"no-store"}]}]}
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "node scripts/build-vercel.mjs",
+  "outputDirectory": "public",
+  "functions": {
+    "api/room-service.js": {
+      "maxDuration": 20
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/room-service?route=:path*"
+    }
+  ]
+}
